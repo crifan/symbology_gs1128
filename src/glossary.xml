@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<glossary xmlns="http://docbook.org/ns/docbook"
+    xml:id="glossary"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>缩略词</title>
+
+<glossentry id="AIM"><glossterm>AIM</glossterm>
+    <acronym>AIM</acronym>
+    <glossdef>
+      <para>Automatic Identification Manufacturers, Inc. </para>
+      <para>自动识别制造商</para>
+    </glossdef>
+</glossentry>
+
+<glossentry id="AI"><glossterm>AI</glossterm>
+    <acronym>AI</acronym>
+    <glossdef>
+      <para>Application Identifier</para>
+      <para>应用标识符</para>
+    </glossdef>
+</glossentry>
+
+<glossentry id="GDSN"><glossterm>GDSN</glossterm>
+    <acronym>GDSN</acronym>
+    <glossdef>
+      <para>Global Data Synchronization Network</para>
+      <para>全球数据同步网络</para>
+    </glossdef>
+</glossentry>
+
+</glossary>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xml:id="ch04_ai_explanation"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<title>AI的解释</title>
+<abstract></abstract>
+
+<para>AI是Application Identifier，应用标识符，的缩写。</para>
+<para>前面介绍过了，GS1是个框架，内部条码的符号集不同，而叫法不同。</para>
+<para>内部是Code 128的符号集，就是对应的GS1-128，而这些符号集，叫做Data Carrier。此处要解释的是，其中像Code 128，DataBar Expanded等符号集，允许在商品条目数据之前添加一些描述性的信息。而AI，应用标识符，就是其具体表现形式。即在你条码数据之前，加上一些标识，来对你的商品条目进行额外描述，比如说明某商品多重，有多少个，保质期是多少等等，诸如此类的信息。</para>
+<para>简言之，AI就是商品条目的前缀，用于描述商品条目的某些信息的条码。</para>
+<para>说白了，AI还是条码，只是一种特殊条码，用于描述商品某些特性而已。</para>
+<para>但是由于条码中， 不方便弄出像人类文字一样的那么多字母，组成一句话来说明某个商品的特点，而只能是条码的数字。</para>
+<para>举例来说，用人类语言来说明商品的生产日期是2011年1月1日的话，那么就可以表述为“此商品的生产日期是2011年1月1日”，但是要是用条码来表示，就不方便把这么多蚊子都编码成条码，然后打印上去，这样效率太低了。</para>
+<para>所以，会有个专门的组织，去定义一些规矩，即某个几个数字前缀，代表某种含义，比如此处，就用两位数11来表示生产日期，然后后面跟着YYMMDD，即20110101，表示生产日期是2011年1月1日，合起来就是1120110101，而实际常将AI用括号括起来，就写成（11）20110101，这样，将对应的1120110101这些数字，用条码去表示，即可，然后条形码解码软件去解码后，就可以得到这一串数字，然后解析成对应的含义。</para>
+<para>AI用不同的数字来表示不同的含义，最少2个数字，最多有4个数字。其不同数字所表示的含义，见下表：</para>
+<figure id="fg.gs1128_ai_5_1" ><title>GS1-128 AI表 – 1/5</title>
+    <mediaobject>
+        <imageobject role="html">
+            <imagedata fileref="images/gs1128_ai_5_1.png" align="left" scalefit="0" width="100%" />
+        </imageobject>
+        <imageobject role="fo">
+            <imagedata fileref="images/gs1128_ai_5_1.png" align="center" scalefit="1" width="100%" />
+        </imageobject>
+    </mediaobject>
+</figure>
+<figure id="fg.gs1128_ai_5_2" ><title>GS1-128 AI表 – 2/5</title>
+    <mediaobject>
+        <imageobject role="html">
+            <imagedata fileref="images/gs1128_ai_5_2.png" align="left" scalefit="0" width="100%" />
+        </imageobject>
+        <imageobject role="fo">
+            <imagedata fileref="images/gs1128_ai_5_2.png" align="center" scalefit="1" width="100%" />
+        </imageobject>
+    </mediaobject>
+</figure>
+<figure id="fg.gs1128_ai_5_3" ><title>GS1-128 AI表 – 3/5</title>
+    <mediaobject>
+        <imageobject role="html">
+            <imagedata fileref="images/gs1128_ai_5_3.png" align="left" scalefit="0" width="100%" />
+        </imageobject>
+        <imageobject role="fo">
+            <imagedata fileref="images/gs1128_ai_5_3.png" align="center" scalefit="1" width="100%" />
+        </imageobject>
+    </mediaobject>
+</figure>
+<figure id="fg.gs1128_ai_5_4" ><title>GS1-128 AI表 – 4/5</title>
+    <mediaobject>
+        <imageobject role="html">
+            <imagedata fileref="images/gs1128_ai_5_4.png" align="left" scalefit="0" width="100%" />
+        </imageobject>
+        <imageobject role="fo">
+            <imagedata fileref="images/gs1128_ai_5_4.png" align="center" scalefit="1" width="100%" />
+        </imageobject>
+    </mediaobject>
+</figure>
+<figure id="fg.gs1128_ai_5_5" ><title>GS1-128 AI表 – 5/5</title>
+    <mediaobject>
+        <imageobject role="html">
+            <imagedata fileref="images/gs1128_ai_5_5.png" align="left" scalefit="0" width="100%" />
+        </imageobject>
+        <imageobject role="fo">
+            <imagedata fileref="images/gs1128_ai_5_5.png" align="center" scalefit="1" width="100%" />
+        </imageobject>
+    </mediaobject>
+</figure>
+<note>
+    <orderedlist>
+        <listitem><emphasis>**</emphasis>
+            <para>上述中的YYMMDD，即年份月份日期，如果只要求YYMM，即年份和月份，没有要求日子的话，那么DD就自动填充为00</para>
+        </listitem>
+        <listitem><emphasis>***</emphasis>
+            <para>上面那些310-369，390-393的第四位的数字，表示小数点的位数</para>
+        </listitem>
+        <listitem><emphasis>FNC1</emphasis>
+            <para>FNC1是在数据中间的话，是用于区分可变长度的AI，比如如果你是30后面最多可以有8位数字来表示产品数量，但是你只有4个数字，比如1000，那么此时就要跟一个FNC1字符，告诉解码程序，此变长的AI到此结束，后面的是其他AI的内容了</para>
+        </listitem>
+        <listitem>上述部分AI的描述中的FNC1，好像不太正确，比如8100，因为本身是固定长度，不需要FNC1去区分</listitem>
+    </orderedlist>
+</note>
+
+</chapter>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE book
+[
+
+<!ENTITY cur_book_name      "symbology_gs1128" >
+<!ENTITY publish_date       "2012-08-09" >
+<!ENTITY release_version    "1.1" >
+
+<!ENTITY copyrith_year "2012" >
+<!ENTITY entity_common_multi_format     SYSTEM  "../../entity_common_multi_format.xml">
+<!ENTITY entity_common_publish_info     SYSTEM  "../../entity_common_publish_info.xml">
+]>
+
+<book version="5.0"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:lang="zh_CN"
+    >
+
+<info>
+    <title>GS1-128条形码和相关的AI及FNC1的详解</title>
+    <subtitle></subtitle>
+
+    <abstract>
+        <para>此文主要解释了什么是GS1-128，为何叫做GS1-128，以及详细解析了AI和FNC1</para>
+        &entity_common_multi_format;
+    </abstract>
+
+    <revhistory>
+        <revision>
+            <revnumber>1.0</revnumber>
+            <date>2011-07-22</date>
+            <revremark>
+                <orderedlist>
+                    <listitem>解释了GS1-128</listitem>
+                    <listitem>详解了AI的含义</listitem>
+                    <listitem>详解了FNC1的含义</listitem>
+                </orderedlist>
+            </revremark>
+            <authorinitials>crl</authorinitials>
+        </revision>
+        <revision>
+            <revnumber>&release_version;</revnumber>
+            <date>&publish_date;</date>
+            <revremark>
+                <orderedlist>
+                    <listitem>通过Docbook发布</listitem>
+                </orderedlist>
+            </revremark>
+            <authorinitials>crl</authorinitials>
+        </revision>
+    </revhistory>
+
+    &entity_common_publish_info;
+</info>
+
+<xi:include href="glossary.xml"/>
+<xi:include href="ch01_what_gs1128.xml"/>
+<xi:include href="ch02_why_gs1128.xml"/>
+<xi:include href="ch03_gs1128_explanation.xml"/>
+<xi:include href="ch04_ai_explanation.xml"/>
+<xi:include href="ch05_fnc1_details.xml"/>
+<xi:include href="reference.xml"/>
+
+</book>

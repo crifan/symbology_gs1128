@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xml:id="ch03_gs1128_explanation"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<title>为何叫GS1-128</title>
+<abstract></abstract>
+
+<para>GS1-128，之前叫做UCC/EAN-128，其他叫法还有EAN-128, UCC-128, USS-128, GS1 128, UCC.EAN-128, GTIN-128, UCC-12, EAN/UCC-13, EAN/UCC-14。</para>
+<para>GS1-128是Code 128符号集的子集。</para>
+<para>GS1-128，在Code 128字符集中的起始符后，如果是Code 128字符集中的FNC1，那么就说明此条码是GS1的条码。</para>
+
+<sect1><title>GS1-128条码的格式</title>
+    <para>GS1-128条码的格式，规范中的解释为：</para>
+    <figure id="fg.gs1128_format"><title>GS1-128格式-文字版</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata fileref="images/gs1128_format.png" align="left" scalefit="0" width="100%" />
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata fileref="images/gs1128_format.png" align="center" scalefit="1" width="100%" />
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>用表格表示为：</para>
+    <table id="tbl.gs1128_format" ><title>GS1-128格式-表格版</title>
+        <tgroup cols="8" >
+            <colspec colnum="1" colname="col1" colwidth="1*" />
+            <colspec colnum="2" colname="col2" colwidth="1*" />
+            <colspec colnum="3" colname="col3" colwidth="1*" />
+            <colspec colnum="4" colname="col4" colwidth="1*" />
+            <colspec colnum="5" colname="col5" colwidth="1*" />
+            <colspec colnum="6" colname="col6" colwidth="1*" />
+            <colspec colnum="7" colname="col7" colwidth="1*" />
+            <colspec colnum="8" colname="col8" colwidth="1*" />
+            
+            <thead>
+                <row><entry>Leading Quiet Zone</entry><entry namest="col2" nameend="col3" align="center" >Start pattern（The double character）</entry><entry namest="col4" nameend="col5" align="center" >Data （including the AI)</entry><entry>A Symbol Check Character</entry><entry>The Stop Character</entry><entry>Trailing Quiet Zone</entry></row>
+            </thead>
+            
+            <tbody>
+                <row><entry></entry><entry>A Start Character (A, B, or C)</entry><entry>The Function Code 1 (FNC1)</entry><entry>AI</entry><entry>AI related Data</entry><entry></entry><entry></entry><entry></entry></row>
+                <row><entry>起始处的静区</entry><entry>起始位/起始字符</entry><entry>FNC1字符</entry><entry>AI</entry><entry>AI数据</entry><entry>校验码字符</entry><entry>停止位</entry><entry>末尾处的静区</entry></row>
+            </tbody>
+        </tgroup>
+    </table>
+    <para>另外一种，去掉了Leading Quiet Zone和Trailing Quiet Zone，然后再用图形表示GS1-128 Bar Code Symbol Structure如下：</para>
+    <para><ulink url="http://www.gs1tw.org/twct/gs1w/download/GS_Section_5-3_V7.pdf" /></para>
+    <figure id="fg.gs1128_barcode_struct" ><title>GS1-128条形码符号集的结构</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata fileref="images/gs1128_barcode_struct.png" align="left" scalefit="0" width="100%" />
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata fileref="images/gs1128_barcode_struct.png" align="center" scalefit="1" width="100%" />
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>如果了解Code 128字符集的话，可以看出，此GS1-128，整个格式和Code 128没啥区别，只是起始位后面多了个FNC1字符，表示此条码为GS1-128，然后其中所表示的数据，都是AI而已。</para>
+    <para>关于其中的Double character：</para>
+    <para>对应地，一般的所以Start Pattern，都只有一个字符，即Start Character，而此处由于Start Character后面多了个FNC1字符，所以才成为Double character。</para>
+</sect1>
+
+<sect1><title>GS1-128和Code 128之间的联系与区别</title>
+    <itemizedlist>
+        <listitem>联系
+            <orderedlist>
+                <listitem>简单的说，GS1-128就是Code 128的一种特殊形式。</listitem>
+                <listitem>特殊在于，GS1-128在普通Code 128的起始位后多了个FNC1，表示此条码为GS1-128条码，然后对于普通Code 128中的条码所表示的是普通数据，而GS1-128中的条码所表示的是AI加上对应的数据。</listitem>
+            </orderedlist>
+        </listitem>
+        <listitem>区别
+            <orderedlist>
+                <listitem>Code 128有FNC1，FNC2，FNC3，FNC4共四个Function Code，而GS1-128中只有FNC1，没有FNC2，FNC3，FNC4。</listitem>
+            </orderedlist>
+        </listitem>
+    </itemizedlist>
+</sect1>
+
+</chapter>

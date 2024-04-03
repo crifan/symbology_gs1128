@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xml:id="ch02_why_gs1128"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<title>为何叫GS1-128</title>
+<abstract></abstract>
+
+<para>首先是因为GS1-128是Code 128符号集的子集。</para>
+<para>另外，GS1是整个一个系统，或者说架构，其框架内部所包含的条码，可以有很多种。而GS1-XXX的命名，其中XXX就是GS1框架内部的所采用的字符集的名字。即不同的内部的条码XXX，对应不同的GS1-XXX。比如内部的条码是Code 128的，叫做GS1-128，而内部是DataBar的，就叫做GS1-DataBar，等等。</para>
+<para>其中内部的条码，说白了就是对条码的数据进行编码，解码出来，就是对应的数据，所以，此GS1框架中的条码，也被称作Data Carriers ，即数据携带者，即不同的条码符号集，进行不同的编码，但归根结底，都是为了携带数据。</para>
+
+</chapter>

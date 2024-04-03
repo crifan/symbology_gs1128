@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xml:id="ch01_what_gs1128"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<title>什么是GS1</title>
+<abstract></abstract>
+
+<para><emphasis>【todo】有空需要将Serialisation-GS1Dec2007.pdf中的内容整合进来</emphasis></para>
+<para>GS1，之前叫做EAN International，EAN国际（组织），2005年改叫GS1。</para>
+<para>GS1是一个非盈利组织。</para>
+<para>GS1组织的目的就是去设计和实现一些标准，以提高供应与需求链的可视化以效率， 目前已经开发了一个系统，叫做GS1 System，是一系列标准的总称。</para>
+<para>GS1 System主要包括四部分：</para>
+<orderedlist>
+    <listitem><emphasis>Barcode</emphasis>
+        <para>条码，用于商品的自动识别系统</para>
+    </listitem>
+    <listitem><emphasis>eCom</emphasis>
+        <para>Electronic Communication，电子商务，实现电子商务信息交互</para>
+    </listitem>
+    <listitem><emphasis>GDSN</emphasis>
+        <para>Global Data Synchronization Network，全球数据同步网络，实现商业伙伴间的数据同步</para>
+    </listitem>
+    <listitem><emphasis>EPCglobal</emphasis>
+        <para>用RFID技术来实现产品追踪</para>
+    </listitem>
+</orderedlist>
+<para>GS1负责维护一堆数据标识符（data identifier），即前缀码（code prefixe），用于其成员将它们分配给对应的成员公司，使这些公司可以去创建与GS1标准相兼容的识别键值（identification key）。</para>
+<para>GS1定义的这些规范，其实是和ISO和IEC相关的，对应关系就是：</para>
+<orderedlist>
+    <listitem>GS1的<emphasis>metadata registries</emphasis>对应的规范就是<emphasis>ISO/IEC 11179</emphasis></listitem>
+    <listitem>GS1的<emphasis>data identifiers</emphasis>对应的规范就是<emphasis>ISO/IEC 15418</emphasis></listitem>
+    <listitem>GS1的<emphasis>RFID air interfaces</emphasis>对应的规范是<emphasis>ISO/IEC 18000-6C</emphasis></listitem>
+</orderedlist>
+
+</chapter>

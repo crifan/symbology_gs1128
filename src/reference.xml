@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<bibliography xmlns="http://docbook.org/ns/docbook"
+    xml:id="reference"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<bibliomixed id="ref.wiki_gs1128">
+  <bibliosource><ulink url="http://en.wikipedia.org/wiki/GS1-128">GS1-128</ulink></bibliosource>
+  <author>wiki</author>
+</bibliomixed>
+
+<bibliomixed id="ref.gs1_ai">
+  <bibliosource><ulink url="http://www.gs1au.org/assets/documents/info/user_manuals/a/gs1_application_identifiers.pdf">GS1 Application Identifiers (AIs)</ulink></bibliosource>
+  <author>gs1au</author>
+</bibliomixed>
+
+<bibliomixed id="ref.gs1128_isoiec15417">
+  <bibliosource>ISO/IEC 15417, Information Technology - Automatic Identification and Data Capture Techniques - Bar code Symbology Specification - Code 128, Code 128条码的规范</bibliosource>
+  <author>ISO/IEC</author>
+</bibliomixed>
+
+<bibliomixed id="ref.gs1128_symb_spec">
+  <bibliosource><ulink url="http://www.gs1tw.org/twct/gs1w/download/GS_Section_5-3_V7.pdf">GS1-128条码的规范是：Section 5.3: GS1-128 Symbology Specifications</ulink></bibliosource>
+  <author>gs1tw</author>
+</bibliomixed>
+
+<bibliomixed id="ref.online_gen_gs1128">
+  <bibliosource><ulink url="http://generator.onbarcode.com/online-gs1-128-barcode-generator.aspx">Free Online GS1-128 / EAN-128 Barcodes Generator</ulink></bibliosource>
+  <author>onbarcode</author>
+</bibliomixed>
+
+</bibliography>

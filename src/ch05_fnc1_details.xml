@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xml:id="ch05_fnc1_details"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<title>FNC1的详细解释</title>
+<abstract></abstract>
+
+<sect1><title>FNC1是什么</title>
+    <para>FNC1，全称是Function 1 Symbol Character，是GS1-128或者GS1-DataMartrix条形码编码中的第一个符号字符。</para>
+    <para>之前一直以为FNC1，和其他字符一样，是ASCII的某个字符，但是具体是对应ASCII的某个字符，也还是没搞懂。而关于FNC1到底是哪个ASCII的字符，同样的困惑，这人也遇到了：</para>
+    <para><ulink url="http://www.tek-tips.com/viewthread.cfm?qid=87224" /></para>
+    <para>但是后来才发现自己上述理解，是错的。</para>
+    <para>正确的解释是：</para>
+    <para>FNC1是Code 128字符集中的一个字符，是个特殊字符，在某些情况下，起到一定控制的作用。</para>
+    <para>FNC1不是ASCII字符集中（可见或非可见）的字符。</para>
+    <para>需要多说明一点的是，ASCII中的，共0-0xFF,256个字符，其中0-0x1F共32个控制字符，叫做不可见字符，余下0x20-0xFF就是我们常见的大小写字母，数字，常见符号等等，称作可见字符。</para>
+    <para>而FNC1本身就不是属于ASCII中的，所以也不是ASCII中的那种不可见的控制字符。对此，需要特别注意，不要再搞混淆了。</para>
+</sect1>
+
+<sect1><title>第一个FNC1不应该传输出来</title>
+    <para><ulink url="http://www.gs1tw.org/twct/gs1w/download/GS_Section_5-3_V7.pdf" /></para>
+    <figure id="fg.gs1128_symb_fnc1" ><title>GS1-128条形码符号集结构文字版 -FNC1</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata fileref="images/gs1128_symb_fnc1.png" align="left" scalefit="0" width="100%" />
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata fileref="images/gs1128_symb_fnc1.png" align="center" scalefit="1" width="100%" />
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>其中，从GS1-128字符集的组成中，我们就可以看出，本身FNC1是属于double character Start Patten中其中一个，和后面的Data数据，即我们真正的条形码中的数据，不是一起的，所以也不应该传出来，而只应该传出来对应的后面的Data。</para>
+    <para>而上述的FNC1，由于处在条形码的最开始位置，所以也被称为第一个FNC1，或者Start Position的FNC1。</para>
+</sect1>
+
+<sect1><title>具体实现也可以用某个ASCII字符来表示第一个FNC1</title>
+    <para>虽然作为第一个字符位置的FNC1不应该传输出来，但是作为具体的解析条形码的程序或解码库来说，其也可以选择在输出条形码数据的时候，把第一个FNC1传输出来，即表示出来。</para>
+    <para>但是对于第一个FNC1的标示的话，有个问题，因为上面解释了，FNC1不是ASCII字符集中的字符，所以也没法打印出来，所以，对此，不同的条形码软件或解码库的具体实现，又都不太一样，都是自己定义一个ASCII中的某个字符，一般是大于128=0x80的某个ASCII字符来表示此FNC1。</para>
+    <para>由于FNC1不是ASCII的字符集中的字符，而且根据这里的说明：</para>
+    <para><ulink url="http://www.gs1.org/docs/barcodes/GS1_DataMatrix_Introduction_and_technical_overview.pdf" /></para>
+    <quote>FNC1 is a special, non-printable, character. It is often inserted using a double-byte “Latch to extended ASCII” but this is system dependent</quote>
+    <para>目前已经找到的一些具体做法是：</para>
+    <itemizedlist>
+        <listitem>Metrologic
+            <para>FNC1 = 129 = 0x81</para>
+        </listitem>
+        <listitem><ulink url="http://www.experts123.com/q/how-do-i-set-the-fnc1-character-that-is-required-for-some-application-identifiers-in-ean-ucc-128.html" />
+            <para>FNC1 = ASCII 242 = 0xF2</para>
+        </listitem>
+        <listitem><ulink url="http://www.gs1.org/docs/barcodes/GS1_DataMatrix_Introduction_and_technical_overview.pdf" />
+            <para>FNC1 = ASCII 232 = 0xE8</para>
+        </listitem>
+        <listitem><ulink url="http://www.ciax.com/manuals/ref/ue128.htm" />
+            <para>FNC1 =%N（N是一个数字，比如1）</para>
+        </listitem>
+        <listitem><ulink url="http://www.neodynamic.com/barcodes/UCC_EAN_128_Barcode.aspx" />
+            <para>FNC1 = ASCII 200 = 0xC8</para>
+        </listitem>
+    </itemizedlist>
+</sect1>
+
+<sect1><title>FNC1被当做为GS的时候，应该传输出来</title>
+    <para>对于FNC1，除了第一个的FNC1，之后出现的FNC1，即在Data数据中出现的FNC1，所起的作用就和第一个FNC1一样了，是用于分割可变长度的AI（Application Identifier，应用标识符）。</para>
+    <para>AI中，有固定长度的，所以有了开始的AI数字（2到4个），就可以知道后面有多少位数字，是对应的此AI的数据，但是对于可变长度的话，后面不知道有几位数据是此AI的数据，所以要加上一个FNC1来用于区分可变字符的数据和其后的其他的AI。</para>
+    <para>此时FNC1起的作用就是区分可变长度的AI和其他AI，用ASCII的GS（Group Separator，组分隔符）字符=0x1D=29来表示。</para>
+    <para>（其中，也有对此处的FNC1起的作用，叫做域分隔符（Field Separator）的。）</para>
+    <para>此处用GS来表示FNC1，也很好理解，因为如果把不同的AI看作是一个组的话，那么正好用GS组分隔符来区分不同的组。</para>
+    <para>所以，此处传输出来的数据的话，原先的条形码的字符集中的FNC1，就被解码器替换为GS字符=0x1D=29输出了，即二进制值是0x1D了。</para>
+</sect1>
+
+<sect1><title>FNC1的总结</title>
+    <para>所以简单总结一下FNC1就是：</para>
+    <para>本身是Code 128等字符集中的一个特殊字符，本身就不属于ASCII字符集，也就不是ASCII中的某个字符。</para>
+    <para>FNC1放在GS1-128字符集中的作用呢，主要就是两个：</para>
+    <orderedlist>
+        <listitem>放在最开始
+            <para>即放在Start字符后的，处于符号集中的第二个位置，在数据之前。此处的作用是，标识此符号集是GS1-128字符集（之前被称为UCC/EAN-128）</para>
+        </listitem>
+        <listitem>放在后面某个位置
+            <para>即数据中间有FNC1的话，解码器就知道此FNC1是用于区分可变长度的AI和其他AI，然后就会将其替换为GS字符，然后同条形码的数据一起输出</para>
+        </listitem>
+    </orderedlist>
+</sect1>
+
+<sect1><title>举例说明FNC1</title>
+    <para>举个例子来说明FNC1的含义：</para>
+    <para>比如一个GS1-128的条形码，内容是：</para>
+    <para><emphasis>(10)123456(30)1000(17)111230</emphasis></para>
+    <para>然后对应的条码是：</para>
+    <figure id="fg.gs1128_barcode" ><title>GS1-128条码：(10)123456(30)1000(17)111230</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata fileref="images/gs1128_barcode.gif" align="left" scalefit="0" width="100%" />
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata fileref="images/gs1128_barcode.gif" align="center" scalefit="1" width="100%" />
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>先来说明，按照GS1-128的格式的话，对应的内容从左到右，依次是：</para>
+    <orderedlist>
+        <listitem>起始处的空白区域</listitem>
+        <listitem>起始位/起始字符</listitem>
+        <listitem id="first_fnc1">（第一个）FNC1</listitem>
+        <listitem>(10)123456(30)1000 </listitem>
+        <listitem id="middle_fnc1" >（数据中间的）FNC1</listitem>
+        <listitem>(17)111230</listitem>
+        <listitem>校验码字符</listitem>
+        <listitem>停止位</listitem>
+        <listitem>末尾处的空白区域</listitem>
+    </orderedlist>
+    <para>其中：</para>
+    <para><xref linkend="first_fnc1" />是FNC1，用于表示此条形码是GS1-128。</para>
+    <para><xref linkend="middle_fnc1" />是数据中间的FNC1，表示当前的可变长度的AI，即30，的数据，到此结束，后面的是其他AI的数据了。如果不加这个FNC1，那么由于AI是30所对应的数据长度最多是8，那么后面的4位数据1711，就会被误判为30的数据了。</para>
+    <para>当然，如果本身数据是这样的：</para>
+    <para><emphasis>(10)123456 (17)111230(30)1000</emphasis></para>
+    <para>即30这个可变长度的AI，是最后一个AI，所以当然不怕再有后面的数据被误以为是30的数据，当然可以省去最后的那个FNC1。</para>
+    <para>而作为解码器解码后，对于除了第一个FNC1，在数据中间出现的其他的FNC1，都应该替代为ASCII中GS字符=0x1D=29。而第一个FNC1，按理来说，只是GS1-128条码的标示性的内容，不属于条形码中的数据，所以不应该传输出来。</para>
+    <para>即，解码后，应该传输出来的数据是：</para>
+    <para><emphasis>10123456301000[GS]17111230</emphasis></para>
+    <para>其中[GS]代表ASCII中的GS字符。</para>
+    <tip><title>ASCII控制字符</title>
+        <para>GS是ASCII的控制字符中的其中一个。关于ASCII控制字符的详细解释，可参考：<ulink url="http://www.crifan.com/the_ascii_character_set_function__control_characters_function__control_code__character_in_ascii/">ASCII字符集中的功能/控制字符 Function/Control Code/Character in ASCII</ulink></para>
+    </tip>
+</sect1>
+
+</chapter>
